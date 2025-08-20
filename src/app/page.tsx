@@ -2,13 +2,22 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, MotionValue, AnimatePresence } from 'framer-motion';
+import { Mail, Instagram, GraduationCap, ArrowUp } from 'lucide-react';
+
+// Import Google Fonts
+if (typeof window !== 'undefined') {
+  const link = document.createElement('link');
+  link.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap';
+  link.rel = 'stylesheet';
+  document.head.appendChild(link);
+}
 
 interface HeroSectionProps {
   scrollYProgress: MotionValue<number>;
 }
 
 interface ContactItem {
-  icon: string;
+  icon: React.ComponentType<any>;
   title: string;
   info: string;
 }
@@ -40,17 +49,22 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, scrollToSection
     >
       <div className="flex space-x-1 bg-white bg-opacity-40 backdrop-blur-md rounded-full px-4 py-2 shadow-sm border border-white border-opacity-50">
         {sections.map((section) => (
-          <button
+          <motion.button
             key={section.id}
             onClick={() => scrollToSection(section.id)}
             className={`flex items-center space-x-2 px-3 py-2 rounded-full transition-all duration-300 ${
               currentSection === section.id
                 ? 'bg-stone-600 text-white shadow-sm backdrop-blur-sm'
-                : 'text-stone-600 hover:bg-white hover:bg-opacity-40 hover:text-stone-700'
+                : 'text-stone-600 hover:bg-white hover:bg-opacity-50 hover:text-stone-700'
             }`}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ scale: 0.95 }}
           >
             <span className="text-xs font-light hidden md:block">{section.label}</span>
-          </button>
+          </motion.button>
         ))}
       </div>
     </motion.nav>
@@ -174,14 +188,7 @@ const Portfolio: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <svg 
-              className="w-5 h-5 text-stone-600" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-            </svg>
+            <ArrowUp className="w-5 h-5 text-stone-600" />
           </motion.button>
         )}
       </AnimatePresence>
@@ -218,8 +225,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
     >
       <div className="text-center z-10">
         <motion.h1 
-          className="text-6xl md:text-8xl font-light tracking-wider text-stone-800 mb-6"
-          style={{ y: titleY, scale }}
+          className="text-6xl md:text-8xl font-thin tracking-[0.2em] text-stone-800 mb-6"
+          style={{ 
+            y: titleY, 
+            scale,
+            fontFamily: "'Playfair Display', serif"
+          }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
@@ -227,8 +238,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
           Carlota
         </motion.h1>
         <motion.h2 
-          className="text-3xl md:text-4xl font-light text-stone-600 mb-8"
-          style={{ y: subtitleY }}
+          className="text-3xl md:text-4xl font-extralight tracking-[0.15em] text-stone-600 mb-8"
+          style={{ 
+            y: subtitleY,
+            fontFamily: "'Playfair Display', serif"
+          }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
@@ -242,8 +256,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
           transition={{ duration: 1, delay: 0.8 }}
         />
         <motion.p 
-          className="text-lg text-stone-600 font-light tracking-wide"
-          style={{ y: descriptionY }}
+          className="text-lg text-stone-600 font-light tracking-[0.1em]"
+          style={{ 
+            y: descriptionY,
+            fontFamily: "'Inter', sans-serif"
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
@@ -252,55 +269,49 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
         </motion.p>
       </div>
       
-      {/* Subtle floating elements with muted colors */}
+      {/* Elegant floating elements - only subtle circles */}
       <motion.div 
         className="absolute top-20 left-20 w-3 h-3 bg-stone-300 bg-opacity-40 rounded-full shadow-sm"
         animate={{ 
-          y: [-20, 20, -20],
-          rotate: [0, 180, 360],
-          scale: [1, 1.1, 1]
+          y: [-10, 10, -10],
+          scale: [1, 1.05, 1]
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         style={{ y: useTransform(scrollYProgress, [0, 1], [0, -300]) }}
       />
       <motion.div 
-        className="absolute bottom-32 right-32 w-4 h-4 bg-stone-400 bg-opacity-30 rounded-full shadow-sm"
+        className="absolute bottom-32 right-32 w-2 h-2 bg-stone-400 bg-opacity-30 rounded-full shadow-sm"
         animate={{ 
-          y: [20, -20, 20],
-          rotate: [360, 180, 0],
-          scale: [1, 0.9, 1]
+          scale: [1, 1.1, 0.9, 1]
         }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         style={{ y: useTransform(scrollYProgress, [0, 1], [0, -150]) }}
       />
       <motion.div 
-        className="absolute top-1/2 right-20 w-2 h-2 bg-stone-300 bg-opacity-50 rounded-full shadow-sm"
+        className="absolute top-1/2 right-20 w-1.5 h-1.5 bg-stone-300 bg-opacity-50 rounded-full shadow-sm"
         animate={{ 
-          y: [-15, 15, -15],
-          rotate: [0, 270, 360],
+          y: [-8, 8, -8],
           scale: [1, 1.2, 1]
         }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         style={{ y: useTransform(scrollYProgress, [0, 1], [0, -200]) }}
       />
       
-      {/* Additional subtle decorative elements */}
+      {/* Additional elegant decorative elements */}
       <motion.div 
-        className="absolute top-1/4 right-1/4 w-1.5 h-1.5 bg-stone-400 bg-opacity-40 rounded-full"
+        className="absolute top-1/4 right-1/4 w-2.5 h-2.5 bg-stone-400 bg-opacity-40 rounded-full shadow-sm"
         animate={{ 
-          x: [-8, 8, -8],
-          y: [-8, 8, -8],
-          scale: [1, 1.3, 1]
+          scale: [1, 1.2, 1],
+          opacity: [0.4, 0.6, 0.4]
         }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         style={{ y: useTransform(scrollYProgress, [0, 1], [0, -180]) }}
       />
       <motion.div 
-        className="absolute bottom-1/4 left-1/3 w-3.5 h-3.5 bg-stone-300 bg-opacity-35 rounded-full shadow-sm"
+        className="absolute bottom-1/4 left-1/3 w-1 h-1 bg-stone-300 bg-opacity-35 rounded-full shadow-sm"
         animate={{ 
-          x: [12, -12, 12],
-          rotate: [0, 360, 720],
-          scale: [1, 0.8, 1]
+          scale: [1, 1.3, 0.8, 1],
+          y: [-5, 5, -5]
         }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         style={{ y: useTransform(scrollYProgress, [0, 1], [0, -120]) }}
@@ -312,8 +323,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
 const AboutSection: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-
-  const skills: string[] = ['Painting', 'Drawing', 'Woodwork', 'Acting', 'Music', 'Design'];
   
   return (
     <section ref={ref} className="min-h-screen flex items-center justify-center px-8 py-20 relative overflow-hidden">
@@ -342,7 +351,7 @@ const AboutSection: React.FC = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <h2 className="text-4xl md:text-6xl font-light text-stone-800 mb-16 text-center">
+          <h2 className="text-4xl md:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-16 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
             About Me
           </h2>
           
@@ -352,31 +361,12 @@ const AboutSection: React.FC = () => {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 1, delay: 0.3 }}
             >
-              <p className="text-xl text-stone-700 leading-relaxed font-light mb-8">
+              <p className="text-xl text-stone-700 leading-relaxed font-light mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
                 I'm a design student at Universidad Europea, driven by an endless passion for creativity in all its forms.
               </p>
-              <p className="text-lg text-stone-600 leading-relaxed font-light mb-8">
-                Whether it's the delicate strokes of painting, the precision of drawing, the tactile joy of woodworking, the emotional depth of acting, or the rhythm of music—I find inspiration everywhere.
+              <p className="text-lg text-stone-600 leading-relaxed font-light mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
+                Whether it's the delicate strokes of painting, the precision of drawing, the tactile joy of woodworking, the emotional depth of acting, or the rhythm of music; I find inspiration everywhere.
               </p>
-              <motion.div 
-                className="flex flex-wrap gap-3"
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ duration: 1, delay: 0.6 }}
-              >
-                {skills.map((skill, index) => (
-                  <motion.span 
-                    key={skill}
-                    className="px-4 py-2 bg-white bg-opacity-30 backdrop-blur-md rounded-full text-stone-600 text-sm font-light border border-white border-opacity-60 shadow-sm"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                    whileHover={{ scale: 1.02, y: -1 }}
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </motion.div>
             </motion.div>
             
             <motion.div
@@ -389,13 +379,13 @@ const AboutSection: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-15" />
                 <div className="relative z-10 text-center p-8">
                   <motion.div 
-                    className="text-5xl mb-4 text-stone-600"
-                    animate={{ rotate: [0, 5, -5, 0] }}
+                    className="text-4xl mb-4 text-stone-500"
+                    animate={{ rotate: [0, 3, -3, 0] }}
                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    ✦
+                    ◊
                   </motion.div>
-                  <p className="text-stone-600 font-light text-sm">
+                  <p className="text-stone-600 font-light text-sm" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}>
                     "Art is not what you see,<br />but what you make others see."
                   </p>
                 </div>
@@ -445,7 +435,7 @@ const BookSection: React.FC = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <h2 className="text-4xl md:text-6xl font-light text-stone-800 mb-8 text-center">
+          <h2 className="text-4xl md:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-8 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
             Featured Work
           </h2>
           
@@ -455,10 +445,10 @@ const BookSection: React.FC = () => {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <h3 className="text-2xl md:text-3xl text-stone-600 font-light mb-4">
+            <h3 className="text-2xl md:text-3xl text-stone-600 font-light mb-4" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}>
               "What Goes Around Comes Around"
             </h3>
-            <p className="text-lg text-stone-500 font-light">
+            <p className="text-lg text-stone-500 font-light" style={{ fontFamily: "'Inter', sans-serif", letterSpacing: "0.05em" }}>
               A Children's Book
             </p>
           </motion.div>
@@ -470,30 +460,38 @@ const BookSection: React.FC = () => {
               transition={{ duration: 1, delay: 0.5 }}
               className="relative group"
             >
-              <div className="aspect-[4/5] bg-white bg-opacity-30 backdrop-blur-md rounded-3xl relative overflow-hidden shadow-lg border border-white border-opacity-50">
+              <motion.div 
+                className="aspect-[4/5] bg-white bg-opacity-30 backdrop-blur-md rounded-3xl relative overflow-hidden shadow-lg border border-white border-opacity-50"
+                whileHover={{ 
+                  scale: 1.02,
+                  y: -4,
+                  transition: { duration: 0.3 }
+                }}
+              >
                 <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 opacity-20" />
                 <div className="relative z-10 p-12 h-full flex flex-col justify-center items-center text-center">
                   <motion.div 
-                    className="text-6xl mb-8 text-stone-600"
+                    className="text-5xl mb-8 text-stone-500"
                     animate={{ 
-                      rotate: [0, 3, -3, 0],
-                      scale: [1, 1.02, 1]
+                      rotate: [0, 2, -2, 0],
+                      scale: [1, 1.01, 1]
                     }}
                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                    whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                   >
-                    ◐
+                    ◈
                   </motion.div>
-                  <h4 className="text-xl text-stone-700 font-light mb-4">
+                  <h4 className="text-xl text-stone-700 font-light mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
                     Book Cover
                   </h4>
-                  <p className="text-stone-500 font-light text-sm">
+                  <p className="text-stone-500 font-light text-sm" style={{ fontFamily: "'Inter', sans-serif", letterSpacing: "0.05em" }}>
                     Coming Soon
                   </p>
                 </div>
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-0 group-hover:opacity-15 transition-opacity duration-500"
+                  className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"
                 />
-              </div>
+              </motion.div>
             </motion.div>
             
             <motion.div
@@ -501,13 +499,13 @@ const BookSection: React.FC = () => {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 1, delay: 0.7 }}
             >
-              <h4 className="text-2xl text-stone-800 font-light mb-8">
+              <h4 className="text-2xl text-stone-800 font-light mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
                 About the Book
               </h4>
-              <p className="text-lg text-stone-700 leading-relaxed font-light mb-8">
+              <p className="text-lg text-stone-700 leading-relaxed font-light mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
                 This children's book explores the beautiful concept of karma through engaging storytelling and vibrant illustrations. It teaches young readers about kindness, empathy, and how our actions create ripples that come back to us.
               </p>
-              <p className="text-lg text-stone-600 leading-relaxed font-light mb-8">
+              <p className="text-lg text-stone-600 leading-relaxed font-light mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
                 Created as part of my journey to blend storytelling with visual art, this book represents my passion for meaningful design that can inspire and educate.
               </p>
               
@@ -543,9 +541,9 @@ const ContactSection: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const contactItems: ContactItem[] = [
-    { icon: "✉", title: "Email", info: "carlotastar@icloud.com" },
-    { icon: "◐", title: "Instagram", info: "@carlota.vaquer" },
-    { icon: "◆", title: "University", info: "Universidad Europea" }
+    { icon: Mail, title: "Email", info: "carlotastar@icloud.com" },
+    { icon: Instagram, title: "Instagram", info: "@carlota.vaquer" },
+    { icon: GraduationCap, title: "University", info: "Universidad Europea" }
   ];
   
   return (
@@ -575,12 +573,13 @@ const ContactSection: React.FC = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <h2 className="text-4xl md:text-6xl font-light text-stone-800 mb-16">
+          <h2 className="text-4xl md:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-16" style={{ fontFamily: "'Playfair Display', serif" }}>
             Let's Connect
           </h2>
           
           <motion.p 
             className="text-xl text-stone-700 leading-relaxed font-light mb-16 max-w-2xl mx-auto"
+            style={{ fontFamily: "'Inter', sans-serif" }}
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
@@ -594,37 +593,37 @@ const ContactSection: React.FC = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            {contactItems.map((contact, index) => (
-              <motion.div 
-                key={contact.title}
-                className="p-6 bg-white bg-opacity-30 backdrop-blur-md rounded-2xl border border-white border-opacity-60 hover:shadow-md transition-all duration-300 shadow-sm"
-                whileHover={{ y: -4, scale: 1.01 }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.7 + index * 0.1 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-15 rounded-2xl" />
-                <div className="relative z-10">
-                  <motion.div 
-                    className="text-3xl mb-3 text-stone-500"
-                    animate={{ 
-                      scale: [1, 1.05, 1],
-                      rotate: [0, 2, -2, 0]
-                    }}
-                    transition={{ 
-                      duration: 6, 
-                      repeat: Infinity, 
-                      ease: "easeInOut",
-                      delay: index * 0.8 
-                    }}
-                  >
-                    {contact.icon}
-                  </motion.div>
-                  <h3 className="text-base text-stone-700 font-light mb-2">{contact.title}</h3>
-                  <p className="text-stone-500 font-light text-sm">{contact.info}</p>
-                </div>
-              </motion.div>
-            ))}
+            {contactItems.map((contact, index) => {
+              const IconComponent = contact.icon;
+              return (
+                <motion.div 
+                  key={contact.title}
+                  className="p-6 bg-white bg-opacity-30 backdrop-blur-md rounded-2xl border border-white border-opacity-60 hover:shadow-lg transition-all duration-300 shadow-sm"
+                  whileHover={{ 
+                    y: -6, 
+                    scale: 1.02,
+                    backgroundColor: "rgba(255, 255, 255, 0.4)",
+                    transition: { duration: 0.3 }
+                  }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.7 + index * 0.1 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-15 rounded-2xl" />
+                  <div className="relative z-10">
+                    <motion.div 
+                      className="flex justify-center mb-3 text-stone-500"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <IconComponent size={20} />
+                    </motion.div>
+                    <h3 className="text-base text-stone-700 font-light mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>{contact.title}</h3>
+                    <p className="text-stone-500 font-light text-sm" style={{ fontFamily: "'Inter', sans-serif", letterSpacing: "0.02em" }}>{contact.info}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
           
           <motion.div 
@@ -633,7 +632,7 @@ const ContactSection: React.FC = () => {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 1.2 }}
           >
-            <p className="text-stone-500 font-light">
+            <p className="text-stone-500 font-light" style={{ fontFamily: "'Inter', sans-serif", letterSpacing: "0.02em" }}>
               © 2025 Carlota Vaquer Rodemann. Crafted with passion and creativity.
             </p>
           </motion.div>
