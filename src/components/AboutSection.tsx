@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { fonts } from "./utils";
 
 const AboutSection: React.FC = () => {
@@ -51,31 +52,17 @@ const AboutSection: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 1, delay: 0.5 }}
-              className="relative"
+              className="relative group"
             >
-              <div className="aspect-square bg-white bg-opacity-30 backdrop-blur-md rounded-3xl flex items-center justify-center relative overflow-hidden shadow-lg border border-white border-opacity-50">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-15" />
-                <div className="relative z-10 text-center p-8">
-                  <motion.div
-                    className="text-4xl mb-4 text-stone-500"
-                    animate={{ rotate: [0, 3, -3, 0] }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    ◊
-                  </motion.div>
-                  <p
-                    className="text-stone-600 font-light text-sm"
-                    style={{ fontFamily: fonts.heading, fontStyle: "italic" }}
-                  >
-                    "Art is not what you see,
-                    <br />
-                    but what you make others see."
-                  </p>
-                </div>
+              <div className="aspect-[3/4] max-w-sm mx-auto bg-white bg-opacity-30 backdrop-blur-md rounded-3xl relative overflow-hidden shadow-lg border border-white border-opacity-50">
+                <Image
+                  src="/portrait.jpeg"
+                  alt="Carlota Vaquer Rodemann - Portrait"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
               </div>
             </motion.div>
           </div>
