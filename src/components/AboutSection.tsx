@@ -52,14 +52,22 @@ const AboutSection: React.FC = () => {
             </div>
 
             <ScrollReveal direction="right" delay={0.8}>
-              <div className="relative group">
+              <div className="relative group cursor-pointer">
                 <div className="aspect-[3/4] max-w-sm mx-auto bg-white bg-opacity-30 backdrop-blur-md rounded-3xl relative overflow-hidden shadow-lg border border-white border-opacity-50">
                   <Image
                     src="/portrait.jpeg"
                     alt="Carlota Vaquer Rodemann - Portrait"
                     fill
-                    className="object-cover scale-130"
+                    className="object-cover scale-130 transition-opacity duration-300 group-hover:opacity-0"
                     style={{ objectPosition: "center 20%" }}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <Image
+                    src="/princess.jpeg"
+                    alt="Carlota Vaquer Rodemann - Princess"
+                    fill
+                    className="object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 absolute inset-0"
+                    style={{ objectPosition: "right 20%" }}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
