@@ -11,7 +11,7 @@ const SectionDivider: React.FC<SectionDividerProps> = ({ className = "" }) => {
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]);
 
   return (
-    <div className={`flex justify-center items-center py-20 ${className}`}>
+    <div className={`flex justify-center items-center py-8 ${className}`}>
       <motion.div
         className="relative"
         style={{ rotate, scale }}

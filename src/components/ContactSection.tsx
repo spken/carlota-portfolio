@@ -32,7 +32,7 @@ const ContactSection: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex items-center justify-center px-8 py-20 relative overflow-hidden"
+      className="flex items-center justify-center px-8 py-8 relative overflow-hidden"
     >
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
@@ -41,14 +41,14 @@ const ContactSection: React.FC = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <h2
-            className="text-4xl md:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-16"
+            className="text-4xl md:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-8"
             style={{ fontFamily: fonts.heading }}
           >
             Let's Connect
           </h2>
 
           <motion.p
-            className="text-xl text-stone-700 leading-relaxed font-light mb-16 max-w-2xl mx-auto"
+            className="text-xl text-stone-700 leading-relaxed font-light mb-8 max-w-2xl mx-auto"
             style={{ fontFamily: fonts.body }}
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
@@ -59,7 +59,7 @@ const ContactSection: React.FC = () => {
           </motion.p>
 
           <motion.div
-            className="grid md:grid-cols-3 gap-8 mb-16"
+            className="grid md:grid-cols-3 gap-8 mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.5 }}

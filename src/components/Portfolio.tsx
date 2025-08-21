@@ -31,7 +31,7 @@ const Portfolio: React.FC = () => {
 
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0, 0.25, 0.5, 0.75, 1],
+    [0, 0.33, 0.66, 1],
     backgroundGradients,
   );
 

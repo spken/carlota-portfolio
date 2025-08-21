@@ -15,7 +15,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
 
   // Rotating text animation
   const rotatingTexts = [
-    "Design Student & Creative Artist",
+    "Creative Artist",
     "Visual Storyteller & Innovator",
     "Creative Visionary & Designer",
     "Digital Creator & Artist"

@@ -11,7 +11,7 @@ const AboutSection: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex items-center justify-center px-8 py-20 relative overflow-hidden"
+      className="flex items-center justify-center px-8 py-8 relative overflow-hidden"
     >
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div
@@ -21,18 +21,18 @@ const AboutSection: React.FC = () => {
         >
           <ScrollReveal direction="up" delay={0.2}>
             <h2
-              className="text-4xl md:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-16 text-center"
+              className="text-4xl md:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-8 text-center"
               style={{ fontFamily: fonts.heading }}
             >
               About Me
             </h2>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <ScrollReveal direction="left" delay={0.4}>
                 <p
-                  className="text-xl text-stone-700 leading-relaxed font-light mb-8"
+                  className="text-xl text-stone-700 leading-relaxed font-light mb-4"
                   style={{ fontFamily: fonts.body }}
                 >
                   I'm a design student at Universidad Europea, driven by an
@@ -41,7 +41,7 @@ const AboutSection: React.FC = () => {
               </ScrollReveal>
               <ScrollReveal direction="left" delay={0.6}>
                 <p
-                  className="text-lg text-stone-600 leading-relaxed font-light mb-8"
+                  className="text-lg text-stone-600 leading-relaxed font-light mb-4"
                   style={{ fontFamily: fonts.body }}
                 >
                   Whether it's the delicate strokes of painting, the precision of
@@ -58,7 +58,8 @@ const AboutSection: React.FC = () => {
                     src="/portrait.jpeg"
                     alt="Carlota Vaquer Rodemann - Portrait"
                     fill
-                    className="object-cover"
+                    className="object-cover scale-130"
+                    style={{ objectPosition: "center 20%" }}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />

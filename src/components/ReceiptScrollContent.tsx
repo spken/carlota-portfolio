@@ -129,25 +129,7 @@ const ReceiptScrollContent: React.FC = () => {
         </div>
 
         {/* Receipt Footer */}
-        <div className="border-l-2 border-r-2 border-b-2 border-stone-200 border-dashed px-8 py-6">
-          <div className="space-y-2 text-xs text-stone-500 font-mono">
-            <div className="flex justify-between">
-              <span>TOTAL SECTIONS:</span>
-              <span>04</span>
-            </div>
-            <div className="flex justify-between">
-              <span>PORTFOLIO ID:</span>
-              <span>CVR-2025-001</span>
-            </div>
-            <div className="h-px bg-stone-300 my-3"></div>
-            <div className="text-center">
-              <span>THANK YOU FOR VIEWING</span>
-            </div>
-            <div className="text-center text-xs">
-              <span>* KEEP THIS RECEIPT FOR YOUR RECORDS *</span>
-            </div>
-          </div>
-          
+        <div className="border-l-2 border-r-2 border-b-2 border-stone-200 border-dashed px-8">          
           {/* Bottom perforated edge */}
           <div className="relative mt-4 -mb-2">
             <svg

@@ -17,7 +17,7 @@ const BookSection: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex items-center justify-center px-6 py-12 relative overflow-hidden"
+      className="flex items-center justify-center px-6 py-8 relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto relative z-10 w-full">
         <motion.div
@@ -27,7 +27,7 @@ const BookSection: React.FC = () => {
         >
           <ScrollReveal direction="up" delay={0.2}>
             <h2
-              className="text-3xl md:text-5xl lg:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-6 text-center"
+              className="text-3xl md:text-5xl lg:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-4 text-center"
               style={{ fontFamily: fonts.heading }}
             >
               Featured Work
@@ -35,7 +35,7 @@ const BookSection: React.FC = () => {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.4}>
-            <div className="text-center mb-10">
+            <div className="text-center mb-6">
               <h3
                 className="text-xl md:text-2xl lg:text-3xl text-stone-600 font-light mb-3"
                 style={{ fontFamily: fonts.heading, fontStyle: "italic" }}
@@ -107,7 +107,7 @@ const BookSection: React.FC = () => {
               </ScrollReveal>
               <ScrollReveal direction="right" delay={1.0}>
                 <p
-                  className="text-base lg:text-lg text-stone-700 leading-relaxed font-light mb-4 lg:mb-6"
+                  className="text-base lg:text-lg text-stone-700 leading-relaxed font-light mb-3 lg:mb-4"
                   style={{ fontFamily: fonts.body }}
                 >
                   This children's book explores the beautiful concept of karma
@@ -118,12 +118,12 @@ const BookSection: React.FC = () => {
               </ScrollReveal>
               <ScrollReveal direction="right" delay={1.2}>
                 <p
-                  className="text-base lg:text-lg text-stone-600 leading-relaxed font-light mb-6 lg:mb-8"
+                  className="text-base lg:text-lg text-stone-600 leading-relaxed font-light mb-4 lg:mb-6"
                   style={{ fontFamily: fonts.body }}
                 >
                   Created as part of my journey to blend storytelling with visual
                   art, this book represents my passion for meaningful design that
-                  can inspire and educate.
+                  can inspire and educate. And I love cats.
                 </p>
               </ScrollReveal>
 
