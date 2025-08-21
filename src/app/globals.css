@@ -23,4 +23,96 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  cursor: none;
+}
+
+/* Custom text selection styles */
+::selection {
+  background: rgba(200, 160, 130, 0.4);
+  color: #3c2414;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: rgba(200, 160, 130, 0.4);
+  color: #3c2414;
+  text-shadow: none;
+}
+
+/* Enhanced selection for headings */
+h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
+  background: rgba(165, 120, 100, 0.35);
+  color: #2d1810;
+}
+
+h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
+  background: rgba(165, 120, 100, 0.35);
+  color: #2d1810;
+}
+
+/* Selection for interactive elements */
+a::selection, button::selection {
+  background: rgba(230, 190, 170, 0.5);
+  color: #1a0f0a;
+}
+
+a::-moz-selection, button::-moz-selection {
+  background: rgba(230, 190, 170, 0.5);
+  color: #1a0f0a;
+}
+
+/* Special selection for code elements if any */
+code::selection, pre::selection {
+  background: rgba(180, 150, 130, 0.3);
+  color: #2a1c14;
+}
+
+code::-moz-selection, pre::-moz-selection {
+  background: rgba(180, 150, 130, 0.3);
+  color: #2a1c14;
+}
+
+/* Selection for input elements */
+input::selection, textarea::selection {
+  background: rgba(210, 170, 150, 0.5);
+  color: #2a1810;
+}
+
+input::-moz-selection, textarea::-moz-selection {
+  background: rgba(210, 170, 150, 0.5);
+  color: #2a1810;
+}
+
+/* Smooth selection transition */
+* {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Disable selection on interactive elements */
+button, .no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide default cursor on all elements on desktop */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Show default cursor on touch devices */
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  
+  body {
+    cursor: auto;
+  }
 }

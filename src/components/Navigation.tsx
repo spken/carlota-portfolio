@@ -19,10 +19,10 @@ const Navigation: React.FC<NavigationProps> = ({
           <motion.button
             key={section.id}
             onClick={() => scrollToSection(section.id)}
-            className={`flex items-center space-x-2 px-3 py-2 rounded-full transition-all duration-300 ${
+            className={`flex items-center space-x-2 px-3 py-1 rounded-t-full transition-all duration-300 border-b-2 ${
               currentSection === section.id
-                ? "bg-stone-600 text-white"
-                : "text-stone-600 hover:text-stone-700"
+                ? "border-stone-600 text-stone-700"
+                : "border-transparent text-stone-600 hover:text-stone-700 hover:border-stone-400"
             }`}
             whileHover={{
               scale: 1.02,

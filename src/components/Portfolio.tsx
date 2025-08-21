@@ -13,7 +13,10 @@ import HeroSection from "./HeroSection";
 import AboutSection from "./AboutSection";
 import BookSection from "./BookSection";
 import ContactSection from "./ContactSection";
+import CustomCursor from "./CustomCursor";
+import TextSelectionIndicator from "./TextSelectionIndicator";
 import { backgroundGradients } from "./utils";
+import { useTextSelection } from "./hooks/useTextSelection";
 
 const Portfolio: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -30,6 +33,9 @@ const Portfolio: React.FC = () => {
     [0, 0.25, 0.5, 0.75, 1],
     backgroundGradients,
   );
+
+  // Use dynamic text selection based on current section
+  useTextSelection(currentSection);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,7 +80,9 @@ const Portfolio: React.FC = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative cursor-none">
+      <CustomCursor />
+      <TextSelectionIndicator />
       <motion.div
         className="fixed inset-0 -z-10"
         style={{ background: backgroundColor }}
