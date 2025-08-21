@@ -76,6 +76,79 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
         >
           Portfolio 2025
         </motion.p>
+        
+        {/* Decorative SVG elements */}
+        <motion.div
+          className="absolute top-1/4 left-10 opacity-25"
+          initial={{ opacity: 0, rotate: -90 }}
+          animate={{ opacity: 0.25, rotate: 0 }}
+          transition={{ duration: 2, delay: 2 }}
+          style={{ y: useTransform(scrollYProgress, [0, 0.3], [0, -40]) }}
+        >
+          <motion.svg 
+            width="60" 
+            height="60" 
+            viewBox="0 0 60 60"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          >
+            <path
+              d="M30,8 L35,22 L50,22 L39,32 L42,47 L30,39 L18,47 L21,32 L10,22 L25,22 Z"
+              fill="currentColor"
+              className="text-stone-500"
+              opacity="0.3"
+            />
+            <path
+              d="M30,8 L35,22 L50,22 L39,32 L42,47 L30,39 L18,47 L21,32 L10,22 L25,22 Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-stone-600"
+            />
+          </motion.svg>
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-1/4 right-10 opacity-20"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 0.2, scale: 1 }}
+          transition={{ duration: 2.5, delay: 2.5 }}
+          style={{ y: useTransform(scrollYProgress, [0, 0.3], [0, -20]) }}
+        >
+          <motion.svg 
+            width="90" 
+            height="90" 
+            viewBox="0 0 90 90"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          >
+            <circle
+              cx="45"
+              cy="45"
+              r="35"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeDasharray="8,8"
+              className="text-stone-400"
+            />
+            <circle
+              cx="45"
+              cy="45"
+              r="20"
+              fill="currentColor"
+              className="text-stone-500"
+              opacity="0.15"
+            />
+            <circle
+              cx="45"
+              cy="45"
+              r="5"
+              fill="currentColor"
+              className="text-stone-600"
+            />
+          </motion.svg>
+        </motion.div>
       </div>
     </motion.section>
   );

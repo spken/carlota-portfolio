@@ -30,7 +30,7 @@ const Navigation: React.FC<NavigationProps> = ({
             }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="text-xs font-light hidden md:block">
+            <span className="text-md font-light hidden md:block">
               {section.label}
             </span>
           </motion.button>

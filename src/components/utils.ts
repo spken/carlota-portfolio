@@ -17,6 +17,7 @@ export const backgroundGradients = [
 
 // Font family constants using CSS variables from layout.tsx
 export const fonts = {
+  name: "var(--font-allura)",
   heading: "var(--font-playfair)",
   body: "var(--font-inter)",
 };

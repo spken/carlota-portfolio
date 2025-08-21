@@ -10,11 +10,12 @@ import {
 import { ArrowUp } from "lucide-react";
 import Navigation from "./Navigation";
 import HeroSection from "./HeroSection";
-import AboutSection from "./AboutSection";
-import BookSection from "./BookSection";
-import ContactSection from "./ContactSection";
 import CustomCursor from "./CustomCursor";
 import TextSelectionIndicator from "./TextSelectionIndicator";
+import FloatingElements from "./FloatingElements";
+import InteractiveSVGDecoration from "./InteractiveSVGDecoration";
+import DramaticSVGElements from "./DramaticSVGElements";
+import ReceiptScrollContent from "./ReceiptScrollContent";
 import { backgroundGradients } from "./utils";
 import { useTextSelection } from "./hooks/useTextSelection";
 
@@ -42,7 +43,7 @@ const Portfolio: React.FC = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // Update current section based on scroll position
+      // Update current section based on scroll position for hero + receipt layout
       if (scrollPosition < windowHeight * 0.8) {
         setCurrentSection("hero");
       } else if (scrollPosition < windowHeight * 1.8) {
@@ -64,9 +65,9 @@ const Portfolio: React.FC = () => {
   const scrollToSection = (section: string) => {
     const sectionOffsets = {
       hero: 0,
-      about: window.innerHeight,
-      book: window.innerHeight * 2,
-      contact: window.innerHeight * 3,
+      about: window.innerHeight * 1.2,
+      book: window.innerHeight * 2.2,
+      contact: window.innerHeight * 3.2,
     };
 
     window.scrollTo({
@@ -83,6 +84,9 @@ const Portfolio: React.FC = () => {
     <div ref={containerRef} className="relative cursor-none">
       <CustomCursor />
       <TextSelectionIndicator />
+      <DramaticSVGElements />
+      <FloatingElements scrollYProgress={scrollYProgress} />
+      <InteractiveSVGDecoration />
       <motion.div
         className="fixed inset-0 -z-10"
         style={{ background: backgroundColor }}
@@ -92,9 +96,6 @@ const Portfolio: React.FC = () => {
         currentSection={currentSection}
         scrollToSection={scrollToSection}
       />
-      
-      {/* Content fade mask - fades content as it reaches navigation area */}
-      <div className="fixed top-0 left-0 right-0 h-36 bg-gradient-to-b from-white via-white/80 to-transparent z-40 pointer-events-none"></div>
 
       <AnimatePresence>
         {showScrollTop && (
@@ -112,10 +113,11 @@ const Portfolio: React.FC = () => {
         )}
       </AnimatePresence>
 
+      {/* Hero Section - Always visible */}
       <HeroSection scrollYProgress={scrollYProgress} />
-      <AboutSection />
-      <BookSection />
-      <ContactSection />
+
+      {/* Receipt Content that scrolls over the hero */}
+      <ReceiptScrollContent />
     </div>
   );
 };
