@@ -9,7 +9,7 @@ const BookSection: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const bookDetails: BookDetail[] = [
-    { label: "Target Age", value: "4-8 years" },
+    { label: "Target Age", value: "4-12 years" },
     { label: "Theme", value: "Kindness & Karma" },
     { label: "Style", value: "Illustrated Fable" },
   ];
