@@ -54,7 +54,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
           Carlota
         </motion.h1>
         <motion.h2
-          className="text-[3rem] sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-light tracking-[0.15em] text-stone-700 mb-8 -mt-4 sm:-mt-8 lg:-mt-12 leading-none"
+          className="text-[3rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[6rem] xl:text-[7rem] font-light tracking-[0.15em] text-stone-700 mb-8 -mt-4 sm:-mt-8 lg:-mt-12 leading-none"
           style={{
             y: subtitleY,
             fontFamily: fonts.name,
@@ -76,7 +76,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
           <AnimatePresence mode="wait">
             <motion.p
               key={currentTextIndex}
-              className="text-base sm:text-xl md:text-2xl lg:text-3xl text-stone-600 font-light tracking-[0.15em] uppercase absolute inset-0 flex items-center justify-center text-center leading-tight"
+              className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] lg:text-[1.75rem] xl:text-[2rem] text-stone-600 font-light tracking-[0.15em] uppercase absolute inset-0 flex items-center justify-center text-center leading-tight"
               style={{
                 y: descriptionY,
                 fontFamily: fonts.body,
@@ -91,7 +91,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
           </AnimatePresence>
         </div>
         <motion.p
-          className="text-lg sm:text-xl md:text-2xl text-stone-500 font-light tracking-[0.1em] mt-4"
+          className="text-[1.125rem] sm:text-[1.25rem] md:text-[1.5rem] lg:text-[1.75rem] xl:text-[2rem] text-stone-500 font-light tracking-[0.1em] mt-4"
           style={{
             fontFamily: fonts.body,
           }}
