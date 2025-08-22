@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
@@ -7,6 +7,34 @@ import { fonts } from "./utils";
 const AboutSection: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+
+  const skills = [
+    { 
+      name: "Painting", 
+      detail: "Where colors come alive with emotion"
+    },
+    { 
+      name: "Drawing", 
+      detail: "Every line tells a story"
+    },
+    { 
+      name: "Woodworking", 
+      detail: "Bringing life to natural materials"
+    },
+    { 
+      name: "Design", 
+      detail: "Where function meets beauty"
+    },
+    { 
+      name: "Digital Design", 
+      detail: "Pixels with purpose"
+    },
+    { 
+      name: "Storytelling", 
+      detail: "Crafting narratives through visuals"
+    }
+  ];
 
   return (
     <section
@@ -41,7 +69,7 @@ const AboutSection: React.FC = () => {
               </ScrollReveal>
               <ScrollReveal direction="left" delay={0.6}>
                 <p
-                  className="text-base sm:text-lg text-stone-600 leading-relaxed font-light mb-4"
+                  className="text-base sm:text-lg text-stone-600 leading-relaxed font-light mb-6"
                   style={{ fontFamily: fonts.body }}
                 >
                   Whether it&apos;s the delicate strokes of painting, the precision of
@@ -49,13 +77,73 @@ const AboutSection: React.FC = () => {
                   acting, or the rhythm of music; I find inspiration everywhere.
                 </p>
               </ScrollReveal>
+
+              {/* Skills Section - More compact grid */}
+              <ScrollReveal direction="left" delay={0.8}>
+                <h3 
+                  className="text-lg font-light text-stone-700 mb-3 tracking-wide"
+                  style={{ fontFamily: fonts.heading }}
+                >
+                  Creative Disciplines
+                </h3>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                  {skills.map((skill, index) => (
+                    <motion.div
+                      key={skill.name}
+                      className="group cursor-pointer"
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.6, delay: 1 + index * 0.05 }}
+                      onMouseEnter={() => setHoveredSkill(skill.name)}
+                      onMouseLeave={() => setHoveredSkill(null)}
+                    >
+                      <div className="relative border-l-2 border-stone-300 pl-3 py-1.5 transition-all duration-300 group-hover:border-stone-500">
+                        {/* Skill Name */}
+                        <motion.h4 
+                          className="font-medium text-stone-800 text-sm mb-0.5"
+                          style={{ fontFamily: fonts.body }}
+                          animate={{ 
+                            x: hoveredSkill === skill.name ? 4 : 0 
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {skill.name}
+                        </motion.h4>
+                        
+                        {/* Detail sentence */}
+                        <motion.div
+                          className="text-xs text-stone-500 font-light italic"
+                          style={{ fontFamily: fonts.body }}
+                          animate={{ 
+                            x: hoveredSkill === skill.name ? 4 : 0,
+                            opacity: hoveredSkill === skill.name ? 1 : 0.7
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {skill.detail}
+                        </motion.div>
+                        
+                        {/* Hover indicator */}
+                        <motion.div
+                          className="absolute left-0 top-0 w-0.5 h-full bg-stone-600 opacity-0"
+                          animate={{ 
+                            opacity: hoveredSkill === skill.name ? 1 : 0,
+                            scaleY: hoveredSkill === skill.name ? 1 : 0
+                          }}
+                          transition={{ duration: 0.3 }}
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </ScrollReveal>
             </div>
 
             <ScrollReveal direction="right" delay={0.8}>
               <div className="relative group cursor-pointer">
                 <div className="aspect-[3/4] max-w-xs sm:max-w-sm mx-auto bg-white bg-opacity-30 backdrop-blur-md rounded-3xl relative overflow-hidden shadow-lg border border-white border-opacity-50">
                   <Image
-                    src="/portrait.jpeg"
+                    src="portrait.jpeg"
                     alt="Carlota Vaquer Rodemann - Portrait"
                     fill
                     className="object-cover scale-130 transition-opacity duration-300 group-hover:opacity-0"
@@ -63,7 +151,7 @@ const AboutSection: React.FC = () => {
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <Image
-                    src="/princess.jpeg"
+                    src="princess.jpeg"
                     alt="Carlota Vaquer Rodemann - Princess"
                     fill
                     className="object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 absolute inset-0"
