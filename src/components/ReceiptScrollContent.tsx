@@ -71,7 +71,7 @@ const ReceiptScrollContent: React.FC = () => {
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-4 my-8">
               <div className="flex-1 h-px bg-stone-300"></div>
-              <div className="text-xs text-stone-500 font-mono px-2">SECTION 02</div>
+              <div className="text-xs text-stone-500 font-mono px-2">SECTION 01</div>
               <div className="flex-1 h-px bg-stone-300"></div>
             </div>
           </div>
@@ -90,7 +90,7 @@ const ReceiptScrollContent: React.FC = () => {
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-4 my-8">
               <div className="flex-1 h-px bg-stone-300"></div>
-              <div className="text-xs text-stone-500 font-mono px-2">SECTION 03</div>
+              <div className="text-xs text-stone-500 font-mono px-2">SECTION 02</div>
               <div className="flex-1 h-px bg-stone-300"></div>
             </div>
           </div>
@@ -110,7 +110,7 @@ const ReceiptScrollContent: React.FC = () => {
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-4 my-8">
               <div className="flex-1 h-px bg-stone-300"></div>
-              <div className="text-xs text-stone-500 font-mono px-2">SECTION 04</div>
+              <div className="text-xs text-stone-500 font-mono px-2">SECTION 03</div>
               <div className="flex-1 h-px bg-stone-300"></div>
             </div>
           </div>
