@@ -10,8 +10,8 @@ const BookSection: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const totalPages = 22;
-  const autoPlayInterval = 10000;
+  const totalPages = 20;
+  const autoPlayInterval = 6000;
   const getPageImage = (pageIndex: number) => `fable_page-${String(pageIndex + 1).padStart(4, '0')}.jpg`;
 
   const bookDetails: BookDetail[] = [
