@@ -38,9 +38,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{ y, opacity }}
     >
-      <div className="text-center z-10 px-4">
+      <div className="text-center z-10 px-4 max-w-6xl mx-auto">
         <motion.h1
-          className="text-7xl md:text-9xl lg:text-[17rem] font-light tracking-[0.1em] text-stone-800"
+          className="text-[7rem] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] xl:text-[17rem] font-light tracking-[0.1em] text-stone-800 leading-none"
           style={{
             y: titleY,
             scale,
@@ -54,7 +54,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
           Carlota
         </motion.h1>
         <motion.h2
-          className="text-4xl md:text-6xl lg:text-7xl font-light tracking-[0.15em] text-stone-700 mb-8 -mt-12"
+          className="text-[3rem] sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-light tracking-[0.15em] text-stone-700 mb-8 -mt-4 sm:-mt-8 lg:-mt-12 leading-none"
           style={{
             y: subtitleY,
             fontFamily: fonts.name,
@@ -67,16 +67,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
           Vaquer Rodemann
         </motion.h2>
         <motion.div
-          className="w-32 h-0.5 bg-stone-400 mx-auto mb-12"
+          className="w-20 sm:w-24 md:w-32 h-0.5 bg-stone-400 mx-auto mb-8 sm:mb-10 md:mb-12"
           initial={{ width: 0 }}
           animate={{ width: 128 }}
           transition={{ duration: 1, delay: 0.8 }}
         />
-        <div className="relative h-8 md:h-10 mb-4 overflow-hidden">
+        <div className="relative h-12 sm:h-14 md:h-16 lg:h-20 mb-6 overflow-hidden px-4">
           <AnimatePresence mode="wait">
             <motion.p
               key={currentTextIndex}
-              className="text-xl md:text-2xl text-stone-600 font-light tracking-[0.15em] uppercase absolute inset-0 flex items-center justify-center"
+              className="text-base sm:text-xl md:text-2xl lg:text-3xl text-stone-600 font-light tracking-[0.15em] uppercase absolute inset-0 flex items-center justify-center text-center leading-tight"
               style={{
                 y: descriptionY,
                 fontFamily: fonts.body,
@@ -91,7 +91,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
           </AnimatePresence>
         </div>
         <motion.p
-          className="text-lg md:text-xl text-stone-500 font-light tracking-[0.1em] mt-4"
+          className="text-lg sm:text-xl md:text-2xl text-stone-500 font-light tracking-[0.1em] mt-4"
           style={{
             fontFamily: fonts.body,
           }}
@@ -104,16 +104,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
         
         {/* Decorative SVG elements */}
         <motion.div
-          className="absolute top-1/4 left-10 opacity-25"
+          className="absolute top-1/4 left-4 sm:left-8 lg:left-10 opacity-25 hidden sm:block"
           initial={{ opacity: 0, rotate: -90 }}
           animate={{ opacity: 0.25, rotate: 0 }}
           transition={{ duration: 2, delay: 2 }}
           style={{ y: useTransform(scrollYProgress, [0, 0.3], [0, -40]) }}
         >
           <motion.svg 
-            width="60" 
-            height="60" 
+            width="40" 
+            height="40" 
             viewBox="0 0 60 60"
+            className="sm:w-[50px] sm:h-[50px] lg:w-[60px] lg:h-[60px]"
             animate={{ rotate: 360 }}
             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
           >
@@ -134,16 +135,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollYProgress }) => {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-1/4 right-10 opacity-20"
+          className="absolute bottom-1/4 right-4 sm:right-8 lg:right-10 opacity-20 hidden sm:block"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 0.2, scale: 1 }}
           transition={{ duration: 2.5, delay: 2.5 }}
           style={{ y: useTransform(scrollYProgress, [0, 0.3], [0, -20]) }}
         >
           <motion.svg 
-            width="90" 
-            height="90" 
+            width="60" 
+            height="60" 
             viewBox="0 0 90 90"
+            className="sm:w-[70px] sm:h-[70px] lg:w-[90px] lg:h-[90px]"
             animate={{ rotate: -360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           >

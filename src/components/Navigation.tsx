@@ -9,7 +9,7 @@ const Navigation: React.FC<NavigationProps> = ({
 }) => {
   return (
     <motion.nav
-      className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50"
+      className="fixed top-4 sm:top-6 md:top-8 left-1/2 transform -translate-x-1/2 z-50"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1.5 }}
@@ -19,7 +19,7 @@ const Navigation: React.FC<NavigationProps> = ({
           <motion.button
             key={section.id}
             onClick={() => scrollToSection(section.id)}
-            className={`flex items-center space-x-2 px-3 py-1 rounded-t-full transition-all duration-300 border-b-2 ${
+            className={`flex items-center space-x-2 px-2 sm:px-3 py-1 rounded-t-full transition-all duration-300 border-b-2 ${
               currentSection === section.id
                 ? "border-stone-600 text-stone-700"
                 : "border-transparent text-stone-600 hover:text-stone-700 hover:border-stone-400"
@@ -30,7 +30,7 @@ const Navigation: React.FC<NavigationProps> = ({
             }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="text-md font-light hidden md:block">
+            <span className="text-sm sm:text-md font-light">
               {section.label}
             </span>
           </motion.button>

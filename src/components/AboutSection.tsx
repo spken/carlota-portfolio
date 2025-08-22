@@ -11,7 +11,7 @@ const AboutSection: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="flex items-center justify-center px-8 py-8 relative overflow-hidden"
+      className="flex items-center justify-center px-4 sm:px-6 lg:px-8 py-6 sm:py-8 relative overflow-hidden"
     >
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div
@@ -21,18 +21,18 @@ const AboutSection: React.FC = () => {
         >
           <ScrollReveal direction="up" delay={0.2}>
             <h2
-              className="text-4xl md:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-8 text-center"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-6 sm:mb-8 text-center leading-tight"
               style={{ fontFamily: fonts.heading }}
             >
               About Me
             </h2>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-center">
+            <div className="mb-6 md:mb-0">
               <ScrollReveal direction="left" delay={0.4}>
                 <p
-                  className="text-xl text-stone-700 leading-relaxed font-light mb-4"
+                  className="text-lg sm:text-xl text-stone-700 leading-relaxed font-light mb-4"
                   style={{ fontFamily: fonts.body }}
                 >
                   I'm a design student at Universidad Europea, driven by an
@@ -41,7 +41,7 @@ const AboutSection: React.FC = () => {
               </ScrollReveal>
               <ScrollReveal direction="left" delay={0.6}>
                 <p
-                  className="text-lg text-stone-600 leading-relaxed font-light mb-4"
+                  className="text-base sm:text-lg text-stone-600 leading-relaxed font-light mb-4"
                   style={{ fontFamily: fonts.body }}
                 >
                   Whether it's the delicate strokes of painting, the precision of
@@ -53,7 +53,7 @@ const AboutSection: React.FC = () => {
 
             <ScrollReveal direction="right" delay={0.8}>
               <div className="relative group cursor-pointer">
-                <div className="aspect-[3/4] max-w-sm mx-auto bg-white bg-opacity-30 backdrop-blur-md rounded-3xl relative overflow-hidden shadow-lg border border-white border-opacity-50">
+                <div className="aspect-[3/4] max-w-xs sm:max-w-sm mx-auto bg-white bg-opacity-30 backdrop-blur-md rounded-3xl relative overflow-hidden shadow-lg border border-white border-opacity-50">
                   <Image
                     src="/portrait.jpeg"
                     alt="Carlota Vaquer Rodemann - Portrait"
