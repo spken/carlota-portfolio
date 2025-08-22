@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import { BookDetail } from "./types";
 import { fonts } from "./utils";
@@ -7,12 +7,31 @@ import { fonts } from "./utils";
 const BookSection: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const totalPages = 22;
+  const autoPlayInterval = 10000;
+  const getPageImage = (pageIndex: number) => `fable_page-${String(pageIndex + 1).padStart(4, '0')}.jpg`;
 
   const bookDetails: BookDetail[] = [
     { label: "Target Age", value: "4-12 years" },
     { label: "Theme", value: "Kindness & Karma" },
     { label: "Style", value: "Illustrated Fable" },
   ];
+
+  useEffect(() => {
+    if (!isAutoPlaying || !isInView) return;
+
+    const interval = setInterval(() => {
+      setCurrentPage((prev) => (prev + 1) % totalPages);
+    }, autoPlayInterval);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, isInView, totalPages, autoPlayInterval]);
+
+  const handleMouseEnter = () => setIsAutoPlaying(false);
+  const handleMouseLeave = () => setIsAutoPlaying(true);
 
   return (
     <section
@@ -53,46 +72,148 @@ const BookSection: React.FC = () => {
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <ScrollReveal direction="left" delay={0.6}>
-              <div className="relative group">
+              <div className="relative group max-w-lg mx-auto">
+                {/* Main Book Display */}
                 <motion.div
-                  className="aspect-[3/4] max-w-sm mx-auto bg-white bg-opacity-30 backdrop-blur-md rounded-3xl relative overflow-hidden shadow-lg border border-white border-opacity-50"
-                  whileHover={{
-                    scale: 1.01,
-                    y: -2,
-                    transition: { duration: 0.4 },
-                  }}
+                  className="relative bg-white rounded-2xl shadow-2xl overflow-hidden"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  style={{ aspectRatio: '1/1' }}
                 >
-                  <div className="relative z-10 p-8 lg:p-10 h-full flex flex-col justify-center items-center text-center">
+                  <AnimatePresence mode="wait">
                     <motion.div
-                      className="text-4xl lg:text-5xl mb-6 lg:mb-8 text-stone-500"
-                      animate={{
-                        rotate: [0, 2, -2, 0],
-                        scale: [1, 1.01, 1],
-                      }}
-                      transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                      key={currentPage}
+                      className="absolute inset-0"
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      ◈
+                      <img
+                        src={getPageImage(currentPage)}
+                        alt={`Fable Page ${currentPage + 1}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                      
+                      {/* Fallback content */}
+                      <div className="hidden w-full h-full flex flex-col items-center justify-center bg-stone-50 text-center p-8">
+                        <motion.div
+                          className="text-6xl mb-4 text-stone-400"
+                          animate={{ rotate: [0, 5, -5, 0] }}
+                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          📖
+                        </motion.div>
+                        <h4 className="text-xl text-stone-600 font-light mb-2" style={{ fontFamily: fonts.heading }}>
+                          Page {currentPage + 1}
+                        </h4>
+                        <p className="text-stone-400 text-sm" style={{ fontFamily: fonts.body }}>
+                          Image not available
+                        </p>
+                      </div>
                     </motion.div>
-                    <h4
-                      className="text-lg lg:text-xl text-stone-700 font-light mb-3 lg:mb-4"
-                      style={{ fontFamily: fonts.heading }}
-                    >
-                      Book Cover
-                    </h4>
-                    <p
-                      className="text-stone-500 font-light text-sm"
-                      style={{ fontFamily: fonts.body, letterSpacing: "0.05em" }}
-                    >
-                      Coming Soon
-                    </p>
+                  </AnimatePresence>
+
+                  {/* Elegant Navigation */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex items-center justify-between">
+                      <motion.button
+                        className="p-3 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-all duration-200"
+                        onClick={() => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </motion.button>
+
+                      <div className="flex-1 mx-6">
+                        <div className="text-center mb-3">
+                          <span className="text-white/90 text-sm font-light" style={{ fontFamily: fonts.body }}>
+                            {currentPage + 1} of {totalPages}
+                          </span>
+                        </div>
+                        <div className="w-full bg-white/20 rounded-full h-1">
+                          <motion.div 
+                            className="h-full bg-white rounded-full"
+                            initial={{ width: "0%" }}
+                            animate={{ width: `${((currentPage + 1) / totalPages) * 100}%` }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                          />
+                        </div>
+                      </div>
+
+                      <motion.button
+                        className="p-3 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-all duration-200"
+                        onClick={() => setCurrentPage((prev) => (prev + 1) % totalPages)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.button>
+                    </div>
                   </div>
-                  <motion.div className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
+
+                  {/* Auto-play Toggle */}
+                  <motion.button
+                    className="absolute top-4 right-4 p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-all duration-200 opacity-0 group-hover:opacity-100"
+                    onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    title={isAutoPlaying ? "Pause slideshow" : "Play slideshow"}
+                  >
+                    {isAutoPlaying ? (
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                      </svg>
+                    ) : (
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    )}
+                  </motion.button>
                 </motion.div>
+
+                {/* Thumbnail Strip */}
+                <div className="mt-6 flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
+                  {Array.from({ length: Math.min(totalPages, 8) }).map((_, index) => {
+                    const startIndex = Math.max(0, Math.min(currentPage - 4, totalPages - 8));
+                    const pageIndex = startIndex + index;
+                    if (pageIndex >= totalPages) return null;
+                    
+                    return (
+                      <motion.button
+                        key={pageIndex}
+                        className={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                          pageIndex === currentPage 
+                            ? 'border-stone-800 shadow-md' 
+                            : 'border-stone-300 hover:border-stone-500'
+                        }`}
+                        onClick={() => setCurrentPage(pageIndex)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <img
+                          src={getPageImage(pageIndex)}
+                          alt={`Page ${pageIndex + 1}`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
+                        />
+                      </motion.button>
+                    );
+                  })}
+                </div>
               </div>
             </ScrollReveal>
 
@@ -114,16 +235,6 @@ const BookSection: React.FC = () => {
                   through engaging storytelling and vibrant illustrations. It
                   teaches young readers about kindness, empathy, and how our
                   actions create ripples that come back to us.
-                </p>
-              </ScrollReveal>
-              <ScrollReveal direction="right" delay={1.2}>
-                <p
-                  className="text-base lg:text-lg text-stone-600 leading-relaxed font-light mb-4 lg:mb-6"
-                  style={{ fontFamily: fonts.body }}
-                >
-                  Created as part of my journey to blend storytelling with visual
-                  art, this book represents my passion for meaningful design that
-                  can inspire and educate. And I love cats.
                 </p>
               </ScrollReveal>
 
