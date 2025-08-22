@@ -11,7 +11,6 @@ import { ArrowUp } from "lucide-react";
 import Navigation from "./Navigation";
 import HeroSection from "./HeroSection";
 import CustomCursor from "./CustomCursor";
-import TextSelectionIndicator from "./TextSelectionIndicator";
 import FloatingElements from "./FloatingElements";
 import InteractiveSVGDecoration from "./InteractiveSVGDecoration";
 import DramaticSVGElements from "./DramaticSVGElements";
@@ -83,7 +82,6 @@ const Portfolio: React.FC = () => {
   return (
     <div ref={containerRef} className="relative cursor-none">
       <CustomCursor />
-      <TextSelectionIndicator />
       <DramaticSVGElements />
       <FloatingElements scrollYProgress={scrollYProgress} />
       <InteractiveSVGDecoration />
