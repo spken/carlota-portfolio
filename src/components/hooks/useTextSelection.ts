@@ -32,7 +32,7 @@ export const useTextSelection = (currentSection: string) => {
     
     // Create dynamic CSS for text selection
     const styleId = 'dynamic-text-selection';
-    let existingStyle = document.getElementById(styleId);
+    const existingStyle = document.getElementById(styleId);
     
     if (existingStyle) {
       existingStyle.remove();

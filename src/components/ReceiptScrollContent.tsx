@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import AboutSection from "./AboutSection";
 import BookSection from "./BookSection";
 import ContactSection from "./ContactSection";
-import { fonts } from "./utils";
 
 const ReceiptScrollContent: React.FC = () => {
   const { scrollYProgress } = useScroll();

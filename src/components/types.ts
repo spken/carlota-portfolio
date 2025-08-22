@@ -5,7 +5,7 @@ export interface HeroSectionProps {
 }
 
 export interface ContactItem {
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
   title: string;
   info: string;
   link: string;

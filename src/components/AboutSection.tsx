@@ -35,7 +35,7 @@ const AboutSection: React.FC = () => {
                   className="text-lg sm:text-xl text-stone-700 leading-relaxed font-light mb-4"
                   style={{ fontFamily: fonts.body }}
                 >
-                  I'm a design student at Universidad Europea, driven by an
+                  I&apos;m a design student at Universidad Europea, driven by an
                   endless passion for creativity in all its forms.
                 </p>
               </ScrollReveal>
@@ -44,7 +44,7 @@ const AboutSection: React.FC = () => {
                   className="text-base sm:text-lg text-stone-600 leading-relaxed font-light mb-4"
                   style={{ fontFamily: fonts.body }}
                 >
-                  Whether it's the delicate strokes of painting, the precision of
+                  Whether it&apos;s the delicate strokes of painting, the precision of
                   drawing, the tactile joy of woodworking, the emotional depth of
                   acting, or the rhythm of music; I find inspiration everywhere.
                 </p>

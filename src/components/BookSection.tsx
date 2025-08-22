@@ -40,13 +40,13 @@ const BookSection: React.FC = () => {
                 className="text-xl md:text-2xl lg:text-3xl text-stone-600 font-light mb-3"
                 style={{ fontFamily: fonts.heading, fontStyle: "italic" }}
               >
-                "What Goes Around Comes Around"
+                &ldquo;What Goes Around Comes Around&rdquo;
               </h3>
               <p
                 className="text-base md:text-lg text-stone-500 font-light"
                 style={{ fontFamily: fonts.body, letterSpacing: "0.05em" }}
               >
-                A Children's Book
+                A Children&apos;s Book
               </p>
             </div>
           </ScrollReveal>
@@ -110,7 +110,7 @@ const BookSection: React.FC = () => {
                   className="text-base lg:text-lg text-stone-700 leading-relaxed font-light mb-3 lg:mb-4"
                   style={{ fontFamily: fonts.body }}
                 >
-                  This children's book explores the beautiful concept of karma
+                  This children&apos;s book explores the beautiful concept of karma
                   through engaging storytelling and vibrant illustrations. It
                   teaches young readers about kindness, empathy, and how our
                   actions create ripples that come back to us.

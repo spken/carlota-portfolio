@@ -44,7 +44,7 @@ const ContactSection: React.FC = () => {
             className="text-4xl md:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-8"
             style={{ fontFamily: fonts.heading }}
           >
-            Let's Connect
+            Let&apos;s Connect
           </h2>
 
           <motion.p
@@ -54,7 +54,7 @@ const ContactSection: React.FC = () => {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            I'm always excited to collaborate on creative projects, discuss art,
+            I&apos;m always excited to collaborate on creative projects, discuss art,
             or share stories about design and creativity.
           </motion.p>
 

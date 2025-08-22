@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const InteractiveSVGDecoration: React.FC = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -13,7 +12,6 @@ const InteractiveSVGDecoration: React.FC = () => {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
-      setMousePosition({ x: clientX, y: clientY });
       
       // Create parallax effect based on mouse position
       const centerX = window.innerWidth / 2;
