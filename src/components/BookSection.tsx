@@ -36,7 +36,7 @@ const BookSection: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="flex items-center justify-center px-6 py-8 relative overflow-hidden"
+      className="flex items-center justify-center px-3 sm:px-6 py-6 sm:py-8 relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto relative z-10 w-full">
         <motion.div
@@ -46,7 +46,7 @@ const BookSection: React.FC = () => {
         >
           <ScrollReveal direction="up" delay={0.2}>
             <h2
-              className="text-3xl md:text-5xl lg:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-4 text-center"
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-thin tracking-[0.15em] text-stone-800 mb-3 sm:mb-4 text-center"
               style={{ fontFamily: fonts.heading }}
             >
               Featured Work
@@ -54,15 +54,15 @@ const BookSection: React.FC = () => {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.4}>
-            <div className="text-center mb-6">
+            <div className="text-center mb-4 sm:mb-6">
               <h3
-                className="text-xl md:text-2xl lg:text-3xl text-stone-600 font-light mb-3"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-stone-600 font-light mb-2 sm:mb-3"
                 style={{ fontFamily: fonts.heading, fontStyle: "italic" }}
               >
                 &ldquo;What Goes Around Comes Around&rdquo;
               </h3>
               <p
-                className="text-base md:text-lg text-stone-500 font-light"
+                className="text-sm sm:text-base md:text-lg text-stone-500 font-light"
                 style={{ fontFamily: fonts.body, letterSpacing: "0.05em" }}
               >
                 A Children&apos;s Book
@@ -70,12 +70,12 @@ const BookSection: React.FC = () => {
             </div>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             <ScrollReveal direction="left" delay={0.6}>
-              <div className="relative group max-w-lg mx-auto">
+              <div className="relative group w-full max-w-sm sm:max-w-md mx-auto">
                 {/* Main Book Display */}
                 <motion.div
-                  className="relative bg-white rounded-2xl shadow-2xl overflow-hidden"
+                  className="relative bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden w-full"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   style={{ aspectRatio: '1/1' }}
@@ -120,26 +120,26 @@ const BookSection: React.FC = () => {
                   </AnimatePresence>
 
                   {/* Elegant Navigation */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 sm:p-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     <div className="flex items-center justify-between">
                       <motion.button
-                        className="p-3 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-all duration-200"
+                        className="p-2.5 sm:p-3 rounded-full bg-white/25 backdrop-blur-md text-white hover:bg-white/35 transition-all duration-200 touch-manipulation"
                         onClick={() => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                       </motion.button>
 
-                      <div className="flex-1 mx-6">
-                        <div className="text-center mb-3">
-                          <span className="text-white/90 text-sm font-light" style={{ fontFamily: fonts.body }}>
+                      <div className="flex-1 mx-3 sm:mx-6">
+                        <div className="text-center mb-2 sm:mb-3">
+                          <span className="text-white/95 text-xs sm:text-sm font-medium" style={{ fontFamily: fonts.body }}>
                             {currentPage + 1} of {totalPages}
                           </span>
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-1">
+                        <div className="w-full bg-white/25 rounded-full h-1.5 sm:h-1">
                           <motion.div 
                             className="h-full bg-white rounded-full"
                             initial={{ width: "0%" }}
@@ -150,12 +150,12 @@ const BookSection: React.FC = () => {
                       </div>
 
                       <motion.button
-                        className="p-3 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-all duration-200"
+                        className="p-2.5 sm:p-3 rounded-full bg-white/25 backdrop-blur-md text-white hover:bg-white/35 transition-all duration-200 touch-manipulation"
                         onClick={() => setCurrentPage((prev) => (prev + 1) % totalPages)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </motion.button>
@@ -164,7 +164,7 @@ const BookSection: React.FC = () => {
 
                   {/* Auto-play Toggle */}
                   <motion.button
-                    className="absolute top-4 right-4 p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 transition-all duration-200 opacity-0 group-hover:opacity-100"
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full bg-white/25 backdrop-blur-md text-white hover:bg-white/35 transition-all duration-200 opacity-100 md:opacity-0 md:group-hover:opacity-100 touch-manipulation"
                     onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -183,24 +183,26 @@ const BookSection: React.FC = () => {
                 </motion.div>
 
                 {/* Thumbnail Strip */}
-                <div className="mt-6 flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
-                  {Array.from({ length: Math.min(totalPages, 8) }).map((_, index) => {
-                    const startIndex = Math.max(0, Math.min(currentPage - 4, totalPages - 8));
-                    const pageIndex = startIndex + index;
-                    if (pageIndex >= totalPages) return null;
-                    
-                    return (
-                      <motion.button
-                        key={pageIndex}
-                        className={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-                          pageIndex === currentPage 
-                            ? 'border-stone-800 shadow-md' 
-                            : 'border-stone-300 hover:border-stone-500'
-                        }`}
-                        onClick={() => setCurrentPage(pageIndex)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
+                <div className="mt-3 sm:mt-6 w-full overflow-hidden">
+                  <div className="flex justify-center">
+                    <div className="flex space-x-1 sm:space-x-2 overflow-x-auto pb-2 scrollbar-hide max-w-full">
+                      {Array.from({ length: Math.min(totalPages, 6) }).map((_, index) => {
+                        const startIndex = Math.max(0, Math.min(currentPage - 3, totalPages - 6));
+                        const pageIndex = startIndex + index;
+                        if (pageIndex >= totalPages) return null;
+                        
+                        return (
+                          <motion.button
+                            key={pageIndex}
+                            className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden border-2 transition-all duration-200 touch-manipulation ${
+                              pageIndex === currentPage 
+                                ? 'border-stone-800 shadow-md scale-110' 
+                                : 'border-stone-300 hover:border-stone-500'
+                            }`}
+                            onClick={() => setCurrentPage(pageIndex)}
+                            whileHover={{ scale: pageIndex === currentPage ? 1.1 : 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
                         <img
                           src={getPageImage(pageIndex)}
                           alt={`Page ${pageIndex + 1}`}
@@ -213,6 +215,8 @@ const BookSection: React.FC = () => {
                       </motion.button>
                     );
                   })}
+                    </div>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>

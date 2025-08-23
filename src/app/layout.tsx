@@ -34,6 +34,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Carlota Vaquer Rodemann - Portfolio",
   description: "Design Student & Creative Artist Portfolio",
+  icons: {
+    icon: 'star.svg',
+    shortcut: 'star.svg',
+    apple: 'star.svg',
+  },
 };
 
 export default function RootLayout({
