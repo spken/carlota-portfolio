@@ -196,7 +196,7 @@ const BookSection: React.FC = () => {
                             key={pageIndex}
                             className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden border-2 transition-all duration-200 touch-manipulation ${
                               pageIndex === currentPage 
-                                ? 'border-stone-800 shadow-md scale-110' 
+                                ? 'border-stone-800 shadow-md' 
                                 : 'border-stone-300 hover:border-stone-500'
                             }`}
                             onClick={() => setCurrentPage(pageIndex)}
