@@ -9,7 +9,6 @@ const CustomCursor: React.FC = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    // Check if device supports touch
     const checkTouchDevice = () => {
       setIsTouchDevice(
         'ontouchstart' in window || 
@@ -21,7 +20,6 @@ const CustomCursor: React.FC = () => {
     checkTouchDevice();
     window.addEventListener('resize', checkTouchDevice);
 
-    // Don't render custom cursor on touch devices
     if (isTouchDevice) {
       return () => {
         window.removeEventListener('resize', checkTouchDevice);
@@ -35,7 +33,6 @@ const CustomCursor: React.FC = () => {
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => setIsHovering(false);
 
-    // Add event listeners for interactive elements
     const interactiveElements = document.querySelectorAll(
       'button, a, [role="button"], .interactive, input, textarea, select'
     );
@@ -57,7 +54,6 @@ const CustomCursor: React.FC = () => {
     };
   }, [isTouchDevice]);
 
-  // Don't render on touch devices
   if (isTouchDevice) {
     return null;
   }

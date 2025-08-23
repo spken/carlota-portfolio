@@ -144,15 +144,15 @@ const AboutSection: React.FC = () => {
                 <div className="aspect-[3/4] max-w-xs sm:max-w-sm mx-auto bg-white bg-opacity-30 backdrop-blur-md rounded-3xl relative overflow-hidden shadow-lg border border-white border-opacity-50">
                   <Image
                     src="portrait.jpeg"
-                    alt="Carlota Vaquer Rodemann - Portrait"
+                    alt="Carlota Vaquer Rodemann"
                     fill
-                    className="object-cover scale-130 transition-opacity duration-300 group-hover:opacity-0"
+                    className="object-cover scale-140 transition-opacity duration-300 group-hover:opacity-0"
                     style={{ objectPosition: "center 20%" }}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <Image
                     src="princess.jpeg"
-                    alt="Carlota Vaquer Rodemann - Princess"
+                    alt="Carlota Vaquer Rodemann"
                     fill
                     className="object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 absolute inset-0"
                     style={{ objectPosition: "right 20%" }}
