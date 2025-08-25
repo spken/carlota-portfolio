@@ -151,7 +151,7 @@ const AboutSection: React.FC = () => {
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <Image
-                    src="princess.jpeg"
+                    src="portrait2.jpeg"
                     alt="Carlota Vaquer Rodemann"
                     fill
                     className="object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 absolute inset-0"

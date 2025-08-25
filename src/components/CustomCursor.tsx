@@ -10,11 +10,20 @@ const CustomCursor: React.FC = () => {
 
   useEffect(() => {
     const checkTouchDevice = () => {
-      setIsTouchDevice(
-        'ontouchstart' in window || 
-        navigator.maxTouchPoints > 0 || 
-        window.matchMedia('(pointer: coarse)').matches
-      );
+      // Check if device is primarily touch-only (mobile/tablet)
+      // rather than a device that supports both mouse and touch (laptop with touchscreen)
+      const hasTouchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+      const hasNoHover = window.matchMedia('(hover: none)').matches;
+      const isMobileViewport = window.innerWidth <= 768; // Typical mobile breakpoint
+      
+      // Device is considered touch-only if:
+      // 1. It has touch support AND
+      // 2. It has a coarse pointer (finger) as the primary input AND
+      // 3. It doesn't support hover (typical of mobile devices) OR has a mobile viewport
+      const isTouchOnlyDevice = hasTouchSupport && hasCoarsePointer && (hasNoHover || isMobileViewport);
+      
+      setIsTouchDevice(isTouchOnlyDevice);
     };
 
     checkTouchDevice();
